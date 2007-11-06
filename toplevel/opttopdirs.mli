@@ -12,12 +12,20 @@
 
 (* $Id$ *)
 
-(* Compiling C files and building C libraries *)
+(* The toplevel directives. *)
 
-val command: string -> int
-val run_command: string -> unit
-val compile_file: string -> int
-val create_archive: string -> string list -> int
-val expand_libname: string -> string
-val quote_files: string list -> string
-val make_link_options: string list -> string
+open Format
+
+val dir_quit : unit -> unit
+val dir_directory : string -> unit
+val dir_cd : string -> unit
+val dir_load : formatter -> string -> unit
+val dir_use : formatter -> string -> unit
+val dir_install_printer : formatter -> Longident.t -> unit
+val dir_remove_printer : formatter -> Longident.t -> unit
+
+type 'a printer_type_new = Format.formatter -> 'a -> unit
+type 'a printer_type_old = 'a -> unit
+
+(* For topmain.ml. Maybe shouldn't be there *)
+val load_file : formatter -> string -> bool
