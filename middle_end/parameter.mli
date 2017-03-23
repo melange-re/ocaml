@@ -16,14 +16,38 @@
 
 [@@@ocaml.warning "+a-4-9-30-40-41-42"]
 
-(* Translate Lambda code to Flambda code and then optimize it. *)
+(** [Parameter.t] carries a unique [Variable.t] used as function parameter.
+    It can also carry annotations about the usage of the variable. *)
 
-val middle_end
-   : Format.formatter
-  -> prefixname:string
-  -> backend:(module Backend_intf.S)
-  -> size:int
-  -> filename:string
-  -> module_ident:Ident.t
-  -> module_initializer:Lambda.lambda
-  -> Flambda.program
+type t
+type parameter = t
+
+(** Make a parameter from a variable with default attributes *)
+val wrap : Variable.t -> t
+
+val var : t -> Variable.t
+
+(** Rename the inner variable of the parameter *)
+val rename
+   : ?current_compilation_unit:Compilation_unit.t
+  -> ?append:string
+  -> t
+  -> t
+
+val map_var : (Variable.t -> Variable.t) -> t -> t
+
+module T : Identifiable.Thing with type t = t
+
+module Set : sig
+  include Identifiable.Set with module T := T
+  val vars : parameter list -> Variable.Set.t
+end
+
+include Identifiable.S with type t := t
+                        and module T := T
+                        and module Set := Set
+
+module List : sig
+  (** extract variables from a list of parameters, preserving the order *)
+  val vars : t list -> Variable.t list
+end
