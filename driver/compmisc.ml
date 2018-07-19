@@ -32,6 +32,16 @@ let init_path ?(dir="") () =
   let exp_dirs =
     List.map (Misc.expand_directory Config.standard_library) dirs in
   Load_path.init (dir :: List.rev_append exp_dirs (Clflags.std_include_dir ()));
+#if undefined BS_NO_COMPILER_PATCH then
+    List.iter Load_path.add_dir
+      (if !Clflags.no_implicit_current_dir then
+         List.rev_append exp_dirs (Clflags.std_include_dir ())
+       else
+         dir :: List.rev_append exp_dirs (Clflags.std_include_dir ()));
+#else
+  List.iter Load_path.add_dir
+     (dir :: List.rev_append exp_dirs (Clflags.std_include_dir ()));
+#end
   Env.reset_cache ()
 
 (* Return the initial environment in which compilation proceeds. *)

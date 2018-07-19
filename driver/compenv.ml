@@ -82,9 +82,15 @@ let is_unit_name name =
 ;;
 
 let check_unit_name filename name =
+#if undefined BS_NO_COMPILER_PATCH then
+    let _ = filename in
+    let _ = name in
+    ()
+#else
   if not (is_unit_name name) then
     Location.prerr_warning (Location.in_file filename)
       (Warnings.Bad_module_name name);;
+#end
 
 (* Compute name of module from output file name *)
 let module_of_filename inputfile outputprefix =
