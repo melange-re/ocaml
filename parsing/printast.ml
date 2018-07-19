@@ -428,7 +428,11 @@ and attribute i ppf k a =
 and attributes i ppf l =
   let i = i + 1 in
   List.iter (fun a ->
+#if undefined BS_NO_COMPILER_PATCH then
+    line i ppf "attribute %a \"%s\"\n"  fmt_location a.attr_loc a.attr_name.txt;
+#else
     line i ppf "attribute \"%s\"\n" a.attr_name.txt;
+#end
     payload (i + 1) ppf a.attr_payload;
   ) l;
 
