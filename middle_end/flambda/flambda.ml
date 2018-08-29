@@ -219,7 +219,7 @@ let rec lam ppf (flam : t) =
     let kind =
       match kind with
       | Self -> "self"
-      | Public -> "public"
+      | Public _ -> "public"
       | Cached -> "cached"
     in
     fprintf ppf "@[<2>(send%s@ %a@ %a%a)@]" kind
