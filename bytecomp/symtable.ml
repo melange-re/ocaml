@@ -158,6 +158,7 @@ let init () =
       let c = slot_for_setglobal id in
       let cst = Const_block
           (Obj.object_tag,
+           Lambda.default_tag_info,
            [Const_base(Const_string (name, Location.none,None));
             Const_base(Const_int (-i-1))
            ])
@@ -225,7 +226,7 @@ let rec transl_const = function
   | Const_base(Const_int64 i) -> Obj.repr i
   | Const_base(Const_nativeint i) -> Obj.repr i
   | Const_immstring s -> Obj.repr s
-  | Const_block(tag, fields) ->
+  | Const_block(tag, _, fields) ->
       let block = Obj.new_block tag (List.length fields) in
       let pos = ref 0 in
       List.iter
