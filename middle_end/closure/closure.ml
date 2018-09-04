@@ -463,7 +463,7 @@ let simplif_prim_pure ~backend fpc p (args, approxs) dbg =
   let open Clambda_primitives in
   match p, args, approxs with
   (* Block construction *)
-  | Pmakeblock(tag, _, Immutable, _kind), _, _ ->
+  | Pmakeblock(tag, Immutable, _kind), _, _ ->
       let field = function
         | Value_const c -> c
         | _ -> raise Exit
@@ -508,7 +508,7 @@ let simplif_prim ~backend fpc p (args, approxs as args_approxs) dbg =
     (* XXX : always return the same approxs as simplif_prim_pure? *)
     let approx =
       match p with
-      | P.Pmakeblock(_, _, Immutable, _kind) ->
+      | P.Pmakeblock(_, Immutable, _kind) ->
           Value_tuple (Array.of_list approxs)
       | _ ->
           Value_unknown
@@ -747,8 +747,8 @@ let bind_params { backend; mutable_vars; _ } loc fpc params args body =
           let p1' = VP.rename p1 in
           let u1, u2 =
             match VP.name p1, a1 with
-            | "*opt*", Uprim(P.Pmakeblock(0, tag_info, Immutable, kind), [a], dbg) ->
-                a, Uprim(P.Pmakeblock(0, tag_info, Immutable, kind),
+            | "*opt*", Uprim(P.Pmakeblock(0, Immutable, kind), [a], dbg) ->
+                a, Uprim(P.Pmakeblock(0, Immutable, kind),
                          [Uvar (VP.var p1')], dbg)
             | _ ->
                 a1, Uvar (VP.var p1')
@@ -1086,7 +1086,7 @@ let rec close ({ backend; fenv; cenv ; mutable_vars } as env) lam =
       let dbg = Debuginfo.from_location loc in
       check_constant_result (Uprim(P.Pfield n, [ulam], dbg))
                             (field_approx n approx)
-  | Lprim(Psetfield(n, is_ptr, init), [Lprim(Pgetglobal id, [], _); lam], loc)->
+  | Lprim(Psetfield(n, is_ptr, init, _dbg_info), [Lprim(Pgetglobal id, [], _); lam], loc)->
       let (ulam, approx) = close env lam in
       if approx <> Value_unknown then
         (!global_approx).(n) <- approx;

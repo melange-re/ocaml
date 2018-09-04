@@ -870,7 +870,7 @@ and transl_prim_2 env p arg1 arg2 dbg =
   (* Heap operations *)
   | Pfield_computed ->
       addr_array_ref (transl env arg1) (transl env arg2) dbg
-  | Psetfield(n, ptr, init) ->
+  | Psetfield(n, ptr, init, _) ->
       setfield n ptr init (transl env arg1) (transl env arg2) dbg
   | Psetfloatfield (n, init) ->
       let ptr = transl env arg1 in
