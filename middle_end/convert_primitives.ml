@@ -32,7 +32,7 @@ let convert (prim : Lambda.primitive) : Clambda_primitives.primitive =
       Psetfield (field, imm_or_pointer, init_or_assign)
   | Psetfield_computed (imm_or_pointer, init_or_assign) ->
       Psetfield_computed (imm_or_pointer, init_or_assign)
-  | Pfloatfield field -> Pfloatfield field
+  | Pfloatfield (field, _) -> Pfloatfield field
   | Psetfloatfield (field, init_or_assign, _) ->
       Psetfloatfield (field, init_or_assign)
   | Pduprecord (repr, size) -> Pduprecord (repr, size)

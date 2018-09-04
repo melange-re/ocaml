@@ -789,7 +789,7 @@ and transl_prim_1 env p arg dbg =
   (* Heap operations *)
   | Pfield n ->
       get_field env (transl env arg) n dbg
-  | Pfloatfield n ->
+  | Pfloatfield (n,_) ->
       let ptr = transl env arg in
       box_float dbg (floatfield n ptr dbg)
   | Pint_as_pointer ->

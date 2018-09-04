@@ -396,6 +396,7 @@ let comp_primitive p args =
   | Pfield_computed -> Kgetvectitem
   | Psetfield(n, _ptr, _init, _) -> Ksetfield n
   | Psetfield_computed(_ptr, _init) -> Ksetvectitem
+  | Pfloatfield (n,_) -> Kgetfloatfield n
   | Psetfloatfield (n, _init, _) -> Ksetfloatfield n
   | Pduprecord _ -> Kccall("caml_obj_dup", 1)
   | Pccall p -> Kccall(p.prim_name, p.prim_arity)
@@ -783,7 +784,7 @@ let rec comp_expr env exp sz cont =
   | Lprim(Pmakeblock(tag, _tag_info, _mut, _), args, loc) ->
       let cont = add_pseudo_event loc !compunit_name cont in
       comp_args env args sz (Kmakeblock(List.length args, tag) :: cont)
-  | Lprim(Pfloatfield n, args, loc) ->
+  | Lprim(Pfloatfield (n, _), args, loc) ->
       let cont = add_pseudo_event loc !compunit_name cont in
       comp_args env args sz (Kgetfloatfield n :: cont)
   | Lprim(p, args, _) ->
