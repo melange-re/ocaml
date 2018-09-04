@@ -787,7 +787,7 @@ and transl_prim_1 env p arg dbg =
     Popaque ->
       transl env arg
   (* Heap operations *)
-  | Pfield n ->
+  | Pfield (n,_) ->
       get_field env (transl env arg) n dbg
   | Pfloatfield (n,_) ->
       let ptr = transl env arg in
