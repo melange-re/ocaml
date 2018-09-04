@@ -396,7 +396,7 @@ let comp_primitive p args =
   | Pfield_computed -> Kgetvectitem
   | Psetfield(n, _ptr, _init, _) -> Ksetfield n
   | Psetfield_computed(_ptr, _init) -> Ksetvectitem
-  | Psetfloatfield (n, _init) -> Ksetfloatfield n
+  | Psetfloatfield (n, _init, _) -> Ksetfloatfield n
   | Pduprecord _ -> Kccall("caml_obj_dup", 1)
   | Pccall p -> Kccall(p.prim_name, p.prim_arity)
   | Pnegint -> Knegint
