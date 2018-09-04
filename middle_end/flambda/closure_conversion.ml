@@ -457,7 +457,7 @@ let rec close t env (lam : Lambda.lambda) : Flambda.t =
       when Ident.same id t.current_unit_id ->
     Misc.fatal_errorf "[Pfield (Pgetglobal ...)] for the current compilation \
         unit is forbidden upon entry to the middle end"
-  | Lprim (Psetfield (_, _, _), [Lprim (Pgetglobal _, [], _); _], _) ->
+  | Lprim (Psetfield (_, _, _,_), [Lprim (Pgetglobal _, [], _); _], _) ->
     Misc.fatal_errorf "[Psetfield (Pgetglobal ...)] is \
         forbidden upon entry to the middle end"
   | Lprim (Pgetglobal id, [], _) when Ident.is_predef id ->
