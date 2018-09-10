@@ -296,6 +296,10 @@ let mk_keep_locs f =
   "-keep-locs", Arg.Unit f, " Keep locations in .cmi files (default)"
 ;;
 
+#if true then
+let mk_bs_d_only f =
+  "-bs-d", Arg.Unit f, " Turn bs only (only for testing)"
+#end
 let mk_no_keep_locs f =
   "-no-keep-locs", Arg.Unit f, " Do not keep locations in .cmi files"
 ;;
@@ -1041,6 +1045,9 @@ module type Bytecomp_options = sig
   val _dcamlprimc : unit -> unit
 
   val _use_prims : string -> unit
+#if true then
+  val _bs_d_only : unit -> unit
+#end
 end;;
 
 module type Bytetop_options = sig
@@ -1254,6 +1261,9 @@ struct
 
     mk_args F._args;
     mk_args0 F._args0;
+#if true then
+    mk_bs_d_only F._bs_d_only;
+#end
   ]
 end;;
 
@@ -1854,6 +1864,9 @@ module Default = struct
     let _intf = Compenv.intf
     let _intf_suffix s = Config.interface_suffix := s
     let _keep_docs = set keep_docs
+#if true then
+  let _bs_d_only = set bs_only
+#end
     let _keep_locs = set keep_locs
     let _linkall = set link_everything
     let _match_context_rows n = match_context_rows := n

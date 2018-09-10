@@ -44,6 +44,9 @@ let main argv ppf =
         exit 2
       end
     end;
+#if true then
+    if not !Clflags.bs_only then (
+#end
     Compenv.readenv ppf Before_link;
     if
       List.length
@@ -103,6 +106,9 @@ let main argv ppf =
       Bytelink.link (Compenv.get_objfiles ~with_ocamlparam:true) target;
       Warnings.check_fatal ();
     end;
+#if true then
+    )
+#end
   with
   | exception (Compenv.Exit_with_status n) ->
     n
