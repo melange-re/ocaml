@@ -1145,6 +1145,9 @@ module type Ocamldoc_options = sig
   val _v : unit -> unit
   val _verbose : unit -> unit
   val _vmthread : unit -> unit
+#if true then
+  val _nopervasives : unit -> unit
+#end
 end
 
 module type Arg_list = sig
@@ -1607,6 +1610,9 @@ struct
     mk_noassert F._noassert;
     mk_nolabels F._nolabels;
     mk_nostdlib F._nostdlib;
+#if true then
+    mk_nopervasives F._nopervasives;
+#end
     mk_open F._open;
     mk_pp F._pp;
     mk_ppx F._ppx;
@@ -1984,6 +1990,7 @@ module Default = struct
     let _version = Compenv.print_version_string
     let _vmthread = ignore
     let _vnum = Compenv.print_version_string
+    let _nopervasives = set Clflags.nopervasives
   end
 
   module Main = struct

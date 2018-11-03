@@ -157,9 +157,9 @@ module type Bytecomp_options = sig
   val _dcamlprimc : unit -> unit
 
   val _use_prims : string -> unit
-#if true then 
+#if true then
   val _bs_d_only : unit -> unit
-#end  
+#end
 end;;
 
 module type Bytetop_options = sig
@@ -257,6 +257,9 @@ module type Ocamldoc_options = sig
   val _v : unit -> unit
   val _verbose : unit -> unit
   val _vmthread : unit -> unit
+#if true then
+  val _nopervasives : unit -> unit
+#end
 end
 
 module type Arg_list = sig
