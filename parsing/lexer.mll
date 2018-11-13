@@ -397,11 +397,13 @@ let directive_parse token_with_comments lexbuf =
                              curr_loc)))
           value_v
     | INT (v,None) ->
-        token_op calc
-          ~no:(fun _e ->
-              raise(Error(Conditional_expr_expected_type(Dir_type_bool,Dir_type_int),
-                          curr_loc)))
-          (Dir_int (cvt_int_literal v))
+      let num_v = cvt_int_literal v in
+      token_op calc
+          ~no:(fun e ->
+                push e;
+                num_v <> 0
+              )
+          (Dir_int num_v)
     | FLOAT (v,None) ->
         token_op calc
           ~no:(fun _e ->
