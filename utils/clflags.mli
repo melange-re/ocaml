@@ -271,13 +271,14 @@ val print_arguments : string -> unit
 (* [reset_arguments ()] clear all declared arguments *)
 val reset_arguments : unit -> unit
 
-#if undefined  BS_NO_COMPILER_PATCH then 
+#if undefined  BS_NO_COMPILER_PATCH then
 type mli_status = Mli_na | Mli_exists | Mli_non_exists
 val no_implicit_current_dir : bool ref
-val assume_no_mli : mli_status ref 
-val record_event_when_debug : bool ref 
+val assume_no_mli : mli_status ref
+val record_event_when_debug : bool ref
 val bs_vscode : bool
 val dont_record_crc_unit : string option ref
 val bs_only : bool ref (* set true on bs top*)
+val bs_gentype : string option ref
 val no_assert_false : bool ref
 #end
