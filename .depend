@@ -249,6 +249,7 @@ parsing/builtin_attributes.cmo : \
     utils/misc.cmi \
     parsing/longident.cmi \
     parsing/location.cmi \
+    utils/clflags.cmi \
     parsing/asttypes.cmi \
     parsing/builtin_attributes.cmi
 parsing/builtin_attributes.cmx : \
@@ -257,6 +258,7 @@ parsing/builtin_attributes.cmx : \
     utils/misc.cmx \
     parsing/longident.cmx \
     parsing/location.cmx \
+    utils/clflags.cmx \
     parsing/asttypes.cmi \
     parsing/builtin_attributes.cmi
 parsing/builtin_attributes.cmi : \
@@ -530,6 +532,7 @@ typing/ctype.cmi : \
 typing/datarepr.cmo : \
     typing/types.cmi \
     typing/path.cmi \
+    parsing/parsetree.cmi \
     parsing/location.cmi \
     typing/ident.cmi \
     typing/btype.cmi \
@@ -538,6 +541,7 @@ typing/datarepr.cmo : \
 typing/datarepr.cmx : \
     typing/types.cmx \
     typing/path.cmx \
+    parsing/parsetree.cmi \
     parsing/location.cmx \
     typing/ident.cmx \
     typing/btype.cmx \
@@ -3293,6 +3297,7 @@ lambda/matching.cmo : \
     typing/ident.cmi \
     typing/env.cmi \
     lambda/debuginfo.cmi \
+    typing/datarepr.cmi \
     utils/clflags.cmi \
     typing/btype.cmi \
     parsing/asttypes.cmi \
@@ -3315,6 +3320,7 @@ lambda/matching.cmx : \
     typing/ident.cmx \
     typing/env.cmx \
     lambda/debuginfo.cmx \
+    typing/datarepr.cmx \
     utils/clflags.cmx \
     typing/btype.cmx \
     parsing/asttypes.cmi \
@@ -3382,7 +3388,8 @@ lambda/switch.cmo : \
     lambda/switch.cmi
 lambda/switch.cmx : \
     lambda/switch.cmi
-lambda/switch.cmi :
+lambda/switch.cmi : \
+    lambda/lambda.cmi
 lambda/translattribute.cmo : \
     utils/warnings.cmi \
     typing/typedtree.cmi \
@@ -3471,6 +3478,7 @@ lambda/translcore.cmo : \
     typing/ident.cmi \
     typing/env.cmi \
     lambda/debuginfo.cmi \
+    typing/datarepr.cmi \
     utils/config.cmi \
     utils/clflags.cmi \
     typing/btype.cmi \
@@ -3498,6 +3506,7 @@ lambda/translcore.cmx : \
     typing/ident.cmx \
     typing/env.cmx \
     lambda/debuginfo.cmx \
+    typing/datarepr.cmx \
     utils/config.cmx \
     utils/clflags.cmx \
     typing/btype.cmx \

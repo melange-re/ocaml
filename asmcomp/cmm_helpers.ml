@@ -1432,7 +1432,7 @@ let transl_isout h arg dbg = tag_int (Cop(Ccmpa Clt, [h ; arg], dbg)) dbg
 
 (* Build an actual switch (ie jump table) *)
 
-let make_switch arg cases actions dbg =
+let make_switch arg cases actions dbg _names =
   let extract_uconstant =
     function
     (* Constant integers loaded from a table should end in 1,
@@ -1514,9 +1514,9 @@ struct
   let make_if cond ifso ifnot =
     Cifthenelse (cond, Debuginfo.none, ifso, Debuginfo.none, ifnot,
       Debuginfo.none)
-  let make_switch dbg arg cases actions =
+  let make_switch dbg arg cases actions names =
     let actions = Array.map (fun expr -> expr, dbg) actions in
-    make_switch arg cases actions dbg
+    make_switch arg cases actions dbg names
   let bind arg body = bind "switcher" arg body
 
   let make_catch handler = match handler with
@@ -1625,7 +1625,7 @@ let transl_int_switch dbg arg low high cases default = match cases with
           dbg
           (low,high)
           a
-          (Array.of_list inters) store)
+          (Array.of_list inters) store None)
 
 
 let transl_switch_clambda loc arg index cases =
@@ -1660,7 +1660,7 @@ let transl_switch_clambda loc arg index cases =
              loc
              (0,n_index-1)
              a
-             (Array.of_list inters) store)
+             (Array.of_list inters) store None)
 
 let strmatch_compile =
   let module S =

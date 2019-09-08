@@ -531,7 +531,7 @@ val transl_isout : expression -> expression -> Debuginfo.t -> expression
     or optimize as a static table lookup when possible. *)
 val make_switch :
   expression -> int array -> (expression * Debuginfo.t) array -> Debuginfo.t ->
-  expression
+  Lambda.sw_names option -> expression
 
 (** [transl_int_switch loc arg low high cases default] *)
 val transl_int_switch :
