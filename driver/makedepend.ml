@@ -296,7 +296,7 @@ let read_and_approximate inputfile =
   let ic = open_in_bin inputfile in
   try
     seek_in ic 0;
-    Location.input_name := inputfile;
+    Location.set_input_name  inputfile;
     let lexbuf = Lexing.from_channel ic in
     Location.init lexbuf inputfile;
     lexical_approximation lexbuf;
@@ -433,7 +433,7 @@ let process_file_as process_fun def source_file =
        !Compenv.first_include_dirs @
        cwd
       ));
-  Location.input_name := source_file;
+  Location.set_input_name  source_file;
   try
     if Sys.file_exists source_file then process_fun source_file else def
   with x -> report_err x; def

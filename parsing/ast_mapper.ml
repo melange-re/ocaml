@@ -990,7 +990,7 @@ let apply_lazy ~source ~target mapper =
   in
 
   let rewrite transform =
-    Location.input_name := input_value ic;
+    Location.set_input_name @@ input_value ic;
     let ast = input_value ic in
     close_in ic;
     let ast = transform ast in
