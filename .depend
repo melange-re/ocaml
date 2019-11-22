@@ -3273,6 +3273,7 @@ lambda/lambda.cmx : \
     lambda/lambda.cmi
 lambda/lambda.cmi : \
     typing/types.cmi \
+    typing/typedtree.cmi \
     typing/primitive.cmi \
     typing/path.cmi \
     typing/ident.cmi \
@@ -3385,8 +3386,10 @@ lambda/simplif.cmi : \
     lambda/lambda.cmi \
     typing/ident.cmi
 lambda/switch.cmo : \
+    lambda/lambda.cmi \
     lambda/switch.cmi
 lambda/switch.cmx : \
+    lambda/lambda.cmx \
     lambda/switch.cmi
 lambda/switch.cmi : \
     lambda/lambda.cmi

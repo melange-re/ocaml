@@ -101,6 +101,7 @@ COMPILERLIBS_SOURCES=\
   typing/primitive.ml \
   typing/type_immediacy.ml \
   typing/types.ml \
+  typing/typedtree.ml \
   typing/btype.ml \
   typing/subst.ml \
   typing/predef.ml \
