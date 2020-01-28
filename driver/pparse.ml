@@ -177,7 +177,7 @@ let file_aux ~tool_name inputfile (type a) parse_fun invariant_fun
           Location.prerr_warning (Location.in_file !Location.input_name)
             Warnings.Unsafe_array_syntax_without_parsing;
         let ast = (input_value ic : a) in
-        if !Clflags.all_ppx = [] && not !Clflags.bs_only then invariant_fun ast;
+        if !Clflags.all_ppx = [] && not !Config.bs_only then invariant_fun ast;
         (* if all_ppx <> [], invariant_fun will be called by apply_rewriters *)
         ast
       end else begin

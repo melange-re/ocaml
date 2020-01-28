@@ -45,7 +45,7 @@ let main argv ppf =
       end
     end;
 #if true then
-    if not !Clflags.bs_only then (
+    if not !Config.bs_only then (
 #end
     Compenv.readenv ppf Before_link;
     if

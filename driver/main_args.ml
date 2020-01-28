@@ -1871,7 +1871,7 @@ module Default = struct
     let _intf_suffix s = Config.interface_suffix := s
     let _keep_docs = set keep_docs
 #if true then
-  let _bs_d_only = set bs_only
+  let _bs_d_only = set Config.bs_only
 #end
     let _keep_locs = set keep_locs
     let _linkall = set link_everything
