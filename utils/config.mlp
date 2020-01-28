@@ -20,20 +20,20 @@ let version = Sys.ocaml_version
 let standard_library_default = "%%LIBDIR%%"
 
 let standard_library =
-#if defined BS_NO_COMPILER_PATCH then
+#if true then
   try
     Sys.getenv "OCAMLLIB"
   with Not_found ->
   try
     Sys.getenv "CAMLLIB"
   with Not_found ->
-#else 
-  try 
+#else
+  try
     Sys.getenv "BSLIB"
-  with Not_found -> 
+  with Not_found ->
 #end
     standard_library_default
-
+let bs_only = ref false
 let ccomp_type = "%%CCOMPTYPE%%"
 let c_compiler = "%%CC%%"
 let c_output_obj = "%%OUTPUTOBJ%%"

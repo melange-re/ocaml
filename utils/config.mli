@@ -26,6 +26,8 @@ val version: string
 val standard_library: string
 (** The directory containing the standard libraries *)
 
+val bs_only : bool ref
+
 val ccomp_type: string
 (** The "kind" of the C compiler, assembler and linker used: one of
     "cc" (for Unix-style C compilers)
