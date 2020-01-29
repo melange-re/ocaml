@@ -582,7 +582,7 @@ let parse_arguments argv f msg =
   | Arg.Bad msg -> Printf.eprintf "%s" msg; exit 2
   | Arg.Help msg -> Printf.printf "%s" msg; exit 0
 
-#if undefined  BS_NO_COMPILER_PATCH then
+#if true then
 type mli_status = Mli_na | Mli_exists | Mli_non_exists
 let no_implicit_current_dir = ref false
 let assume_no_mli = ref Mli_na
@@ -595,5 +595,4 @@ let bs_vscode =
 let dont_record_crc_unit : string option ref = ref None
 let bs_gentype = ref None
 let no_assert_false = ref false
-let bs_quiet = ref false
 #end
