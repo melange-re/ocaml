@@ -280,5 +280,4 @@ val bs_vscode : bool
 val dont_record_crc_unit : string option ref
 val bs_gentype : string option ref
 val no_assert_false : bool ref
-val bs_quiet : bool ref
 #end
