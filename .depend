@@ -144,9 +144,11 @@ utils/terminfo.cmx : \
 utils/terminfo.cmi :
 utils/warnings.cmo : \
     utils/misc.cmi \
+    utils/config.cmi \
     utils/warnings.cmi
 utils/warnings.cmx : \
     utils/misc.cmx \
+    utils/config.cmx \
     utils/warnings.cmi
 utils/warnings.cmi :
 parsing/ast_helper.cmo : \
@@ -264,7 +266,8 @@ parsing/builtin_attributes.cmx : \
 parsing/builtin_attributes.cmi : \
     parsing/parsetree.cmi \
     utils/misc.cmi \
-    parsing/location.cmi
+    parsing/location.cmi \
+    parsing/asttypes.cmi
 parsing/camlinternalMenhirLib.cmo : \
     parsing/camlinternalMenhirLib.cmi
 parsing/camlinternalMenhirLib.cmx : \
@@ -565,6 +568,7 @@ typing/env.cmo : \
     utils/load_path.cmi \
     typing/ident.cmi \
     typing/datarepr.cmi \
+    utils/config.cmi \
     file_formats/cmi_format.cmi \
     utils/clflags.cmi \
     parsing/builtin_attributes.cmi \
@@ -585,6 +589,7 @@ typing/env.cmx : \
     utils/load_path.cmx \
     typing/ident.cmx \
     typing/datarepr.cmx \
+    utils/config.cmx \
     file_formats/cmi_format.cmx \
     utils/clflags.cmx \
     parsing/builtin_attributes.cmx \
@@ -3284,6 +3289,7 @@ lambda/matching.cmo : \
     typing/types.cmi \
     typing/typeopt.cmi \
     typing/typedtree.cmi \
+    typing/typecore.cmi \
     lambda/switch.cmi \
     typing/printpat.cmi \
     lambda/printlambda.cmi \
@@ -3299,6 +3305,7 @@ lambda/matching.cmo : \
     typing/env.cmi \
     lambda/debuginfo.cmi \
     typing/datarepr.cmi \
+    utils/config.cmi \
     utils/clflags.cmi \
     typing/btype.cmi \
     parsing/asttypes.cmi \
@@ -3307,6 +3314,7 @@ lambda/matching.cmx : \
     typing/types.cmx \
     typing/typeopt.cmx \
     typing/typedtree.cmx \
+    typing/typecore.cmx \
     lambda/switch.cmx \
     typing/printpat.cmx \
     lambda/printlambda.cmx \
@@ -3322,6 +3330,7 @@ lambda/matching.cmx : \
     typing/env.cmx \
     lambda/debuginfo.cmx \
     typing/datarepr.cmx \
+    utils/config.cmx \
     utils/clflags.cmx \
     typing/btype.cmx \
     parsing/asttypes.cmi \
@@ -3422,6 +3431,7 @@ lambda/translclass.cmo : \
     typing/types.cmi \
     typing/typeopt.cmi \
     typing/typedtree.cmi \
+    typing/typecore.cmi \
     lambda/translobj.cmi \
     lambda/translcore.cmi \
     typing/path.cmi \
@@ -3439,6 +3449,7 @@ lambda/translclass.cmx : \
     typing/types.cmx \
     typing/typeopt.cmx \
     typing/typedtree.cmx \
+    typing/typecore.cmx \
     lambda/translobj.cmx \
     lambda/translcore.cmx \
     typing/path.cmx \
@@ -3526,6 +3537,7 @@ lambda/translcore.cmi : \
     parsing/asttypes.cmi
 lambda/translmod.cmo : \
     typing/types.cmi \
+    typing/typemod.cmi \
     typing/typedtree.cmi \
     lambda/translprim.cmi \
     lambda/translobj.cmi \
@@ -3543,11 +3555,13 @@ lambda/translmod.cmo : \
     typing/env.cmi \
     lambda/debuginfo.cmi \
     typing/ctype.cmi \
+    utils/config.cmi \
     utils/clflags.cmi \
     parsing/asttypes.cmi \
     lambda/translmod.cmi
 lambda/translmod.cmx : \
     typing/types.cmx \
+    typing/typemod.cmx \
     typing/typedtree.cmx \
     lambda/translprim.cmx \
     lambda/translobj.cmx \
@@ -3565,6 +3579,7 @@ lambda/translmod.cmx : \
     typing/env.cmx \
     lambda/debuginfo.cmx \
     typing/ctype.cmx \
+    utils/config.cmx \
     utils/clflags.cmx \
     parsing/asttypes.cmi \
     lambda/translmod.cmi
