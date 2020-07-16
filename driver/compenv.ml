@@ -610,7 +610,7 @@ let get_objfiles ~with_ocamlparam =
 
 
 
-
+#if undefined BS_ONLY then
 type deferred_action =
   | ProcessImplementation of string
   | ProcessInterface of string
@@ -719,3 +719,4 @@ let process_deferred_actions env =
     match !stop_after with
     | None -> false
     | Some p -> Clflags.Compiler_pass.is_compilation_pass p;
+#end
