@@ -547,6 +547,7 @@ let set_save_ir_after pass enabled =
 
 module String = Misc.Stdlib.String
 
+#if undefined BS_ONLY then
 let arg_spec = ref []
 let arg_names = ref String.Map.empty
 
@@ -581,6 +582,7 @@ let parse_arguments argv f msg =
   with
   | Arg.Bad msg -> Printf.eprintf "%s" msg; exit 2
   | Arg.Help msg -> Printf.printf "%s" msg; exit 0
+#end
 
 #if true then
 type mli_status = Mli_na | Mli_exists | Mli_non_exists
