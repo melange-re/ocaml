@@ -1514,7 +1514,7 @@ struct
   let make_if cond ifso ifnot =
     Cifthenelse (cond, Debuginfo.none, ifso, Debuginfo.none, ifnot,
       Debuginfo.none)
-  let make_switch dbg arg cases actions names =
+  let make_switch dbg arg cases actions ~offset:_ names =
     let actions = Array.map (fun expr -> expr, dbg) actions in
     make_switch arg cases actions dbg names
   let bind arg body = bind "switcher" arg body
