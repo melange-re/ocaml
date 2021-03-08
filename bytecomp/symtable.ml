@@ -159,8 +159,8 @@ let init () =
       let cst = Const_block
           (Obj.object_tag,
            Lambda.default_tag_info,
-           [Const_base(Const_string (name, Location.none,None));
-            Const_base(Const_int (-i-1))
+           [Const_base(Const_string (name, Location.none,None), default_pointer_info);
+            Const_base(Const_int (-i-1), default_pointer_info)
            ])
       in
       literal_table := (c, cst) :: !literal_table)
@@ -218,13 +218,13 @@ let patch_object buff patchlist =
 (* Translate structured constants *)
 
 let rec transl_const = function
-    Const_base(Const_int i) -> Obj.repr i
-  | Const_base(Const_char c) -> Obj.repr c
-  | Const_base(Const_string (s, _, _)) -> Obj.repr s
-  | Const_base(Const_float f) -> Obj.repr (float_of_string f)
-  | Const_base(Const_int32 i) -> Obj.repr i
-  | Const_base(Const_int64 i) -> Obj.repr i
-  | Const_base(Const_nativeint i) -> Obj.repr i
+    Const_base(Const_int i, _) -> Obj.repr i
+  | Const_base(Const_char c, _) -> Obj.repr c
+  | Const_base(Const_string (s, _, _), _) -> Obj.repr s
+  | Const_base(Const_float f, _) -> Obj.repr (float_of_string f)
+  | Const_base(Const_int32 i, _) -> Obj.repr i
+  | Const_base(Const_int64 i, _) -> Obj.repr i
+  | Const_base(Const_nativeint i, _) -> Obj.repr i
   | Const_immstring s -> Obj.repr s
   | Const_block(tag, _, fields) ->
       let block = Obj.new_block tag (List.length fields) in
