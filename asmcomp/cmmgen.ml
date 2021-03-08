@@ -459,7 +459,7 @@ let rec transl env e =
           Cconst_symbol (sym, dbg)
       | (Pmakeblock _, []) ->
           assert false
-      | (Pmakeblock(tag, _, _mut, _kind), args) ->
+      | (Pmakeblock(tag, _mut, _kind), args) ->
           make_alloc dbg tag (List.map (transl env) args)
       | (Pccall prim, args) ->
           transl_ccall env prim args dbg
@@ -787,9 +787,9 @@ and transl_prim_1 env p arg dbg =
     Popaque ->
       transl env arg
   (* Heap operations *)
-  | Pfield (n,_) ->
+  | Pfield n ->
       get_field env (transl env arg) n dbg
-  | Pfloatfield (n,_) ->
+  | Pfloatfield n ->
       let ptr = transl env arg in
       box_float dbg (floatfield n ptr dbg)
   | Pint_as_pointer ->
@@ -870,27 +870,9 @@ and transl_prim_2 env p arg1 arg2 dbg =
   (* Heap operations *)
   | Pfield_computed ->
       addr_array_ref (transl env arg1) (transl env arg2) dbg
-  | Psetfield(n, ptr, init, _) ->
-<<<<<<< HEAD
+  | Psetfield(n, ptr, init) ->
       setfield n ptr init (transl env arg1) (transl env arg2) dbg
   | Psetfloatfield (n, init) ->
-=======
-      begin match assignment_kind ptr init with
-      | Caml_modify ->
-        return_unit(Cop(Cextcall("caml_modify", typ_void, false, None),
-                        [field_address (transl env arg1) n dbg;
-                         transl env arg2],
-                        dbg))
-      | Caml_initialize ->
-        return_unit(Cop(Cextcall("caml_initialize", typ_void, false, None),
-                        [field_address (transl env arg1) n dbg;
-                         transl env arg2],
-                        dbg))
-      | Simple ->
-        return_unit(set_field (transl env arg1) n (transl env arg2) init dbg)
-      end
-  | Psetfloatfield (n, init,_) ->
->>>>>>> 3f2b4a497 (Patch to Psetfloatfield)
       let ptr = transl env arg1 in
       let float_val = transl_unbox_float dbg env arg2 in
       setfloatfield n init ptr float_val dbg
