@@ -571,6 +571,7 @@ let rec transl env e =
           s.us_index_consts
           (Array.map (fun expr -> transl env expr, dbg) s.us_actions_consts)
           dbg
+          None
       else if Array.length s.us_index_consts = 0 then
         bind "switch" (transl env arg) (fun arg ->
           transl_switch dbg env (get_tag arg dbg)
