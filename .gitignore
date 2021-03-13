@@ -270,3 +270,5 @@ _build
 /bin/
 lib/ocaml/
 man/
+_esy
+*~
